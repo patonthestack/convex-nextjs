@@ -13,10 +13,22 @@ export default function Home() {
 					<div className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
 						A list of tasks retrieved using Convex
 					</div>
-					<ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-						{tasks?.map(({ _id, text }) => (
+					<ol className="list-decimal list-outside pl-7 text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+						{tasks?.map(({ _id, text, isCompleted }) => (
 							<li className="mb-2 tracking-[-.01em]" key={_id}>
-								{text}
+								<span className="flex items-center gap-2" key={`span-${_id}`}>
+									{text}
+									{isCompleted && (
+										<Image
+											className="dark:invert"
+											src="/check-mark.svg"
+											alt="Checkmark"
+											width={20}
+											height={10}
+											priority
+										/>
+									)}
+								</span>
 							</li>
 						))}
 					</ol>
